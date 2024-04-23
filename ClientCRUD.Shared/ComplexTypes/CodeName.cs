@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientCRUD.Domain.Entities
+namespace ClientCRUD.Shared.ComplexTypes
 {
     public class CodeName
     {

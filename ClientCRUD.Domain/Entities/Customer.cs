@@ -9,17 +9,6 @@ namespace ClientCRUD.Domain.Entities
 {
     public class Customer
     {
-        public Customer(Guid id, int code, CodeName type, bool enabled, List<Address> addresses, List<Phone> phones, List<Email> emails)
-        {
-            Id = Guid.NewGuid();
-            Code = code;
-            Type = type;
-            Enabled = enabled;
-            Addresses = addresses;
-            Phones = phones;
-            Emails = emails;
-        }
-
         public Guid Id { get; set; }
         public int Code { get; set; }
         public CodeName Type { get; set; }

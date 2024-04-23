@@ -1,4 +1,4 @@
-﻿using ClientCRUD.Domain.Entities;
+﻿using ClientCRUD.Domain.Repositories;
 using ClientCRUD.Infra.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,26 +8,47 @@ namespace ClientCRUD.Api.Controllers
     [Route("")]
     public class CustomerController : ControllerBase
     {
+        private readonly ICustomerRepository _customerRepository;
+        public CustomerController(CustomerRepository customerRepository)
+        {
+            _customerRepository = customerRepository;
+        }
         [HttpGet("/customer")]
-        public IActionResult GetAll([FromServices] CustomerRepository customerRepository) => Ok(customerRepository.GetAll());
-        [HttpGet("/customer/{name}")]
-        public IActionResult GetByCode([FromRoute] string name, [FromServices] CustomerRepository customerRepository) => Ok(customerRepository.GetByCode(name));
-        [HttpDelete("/customer/{name}")]
-        public IActionResult DeleteByCode([FromRoute] string name, [FromServices] CustomerRepository customerRepository)
-        {
-            customerRepository.Delete(name);
-            return Ok("Deleted "+name);
-        }
-        [HttpPut("/customer")]
-        public IActionResult Insert([FromServices] CustomerRepository customerRepository, [FromQuery] string namerr) 
-        {
-            customerRepository.Insert(namerr);
-            return Ok("Criado com sucesso");
-        }
+        public IActionResult GetAll() => Ok(_customerRepository.GetAll()); //Done
+        //[HttpGet("/customer/{id}")]
+        //public IActionResult GetByCode([FromRoute] string id) //Done
+        //{
+        //    var entity = _customerRepository.GetByCode(id);
+        //    if (entity == null)
+        //        return NotFound("Not found that id");
+        //    return Ok(entity);
+        //}
+        //[HttpDelete("/customer/{id}")]
+        //public IActionResult DeleteByCode([FromRoute] string id) //Done
+        //{
+        //    if (_customerRepository.GetByCode(id) == null)
+        //        return NotFound("Not found that id");
+        //    _customerRepository.Delete(id);
+        //    return Ok("Deleted " + id);
+        //}
+        ////Criar Bodys para o de baixo
+        //[HttpPost("/customer")]
+        //public IActionResult Insert([FromQuery] string namerr)
+        //{
+        //    _customerRepository.Insert(namerr);
+        //    return Ok("Criado com sucesso");
+        //}
+        //[HttpPut("/customer")]
+        //public IActionResult Update([FromQuery] string name, [FromQuery] string newname)
+        //{
+        //    //Lógica se existe ou não
+        //    _customerRepository.Update(name, newname);
+        //    return Ok(_customerRepository.GetByCode(newname));
+        //}
         [HttpGet("")]
         public IActionResult Status()
         {
-            return Ok("API Online");
+            return StatusCode(418, "API Online");
         }
     }
 }

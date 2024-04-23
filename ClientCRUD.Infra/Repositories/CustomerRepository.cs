@@ -1,7 +1,7 @@
 ﻿using ClientCRUD.Domain.Entities;
+using ClientCRUD.Domain.Repositories;
 using ClientCRUD.Infra.Context;
-using ClientCRUD.Infra.Repositories.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using ClientCRUD.Infra.Services;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -14,57 +14,91 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace ClientCRUD.Infra.Repositories;
-public class Customer
-{
-    public ObjectId Id { get; set; }
-    public string? name { get; set; }
-}
 
 public class CustomerRepository : ICustomerRepository
 {
-    public MongoDbContext _db;
-    public CustomerRepository(MongoDbContext mongoDbContext)
+    private MongoDbContext<Customer> _db;
+    private CodeGenerator _cg;
+    public CustomerRepository(MongoDbContext<Customer> mongoDbContext, CodeGenerator codeGenerator)
     {
         _db = mongoDbContext;
+        _cg = codeGenerator;
     }
-    public void Delete(string name)
-    {
-        var collection = _db.GetCollection("customers");
-        var filter = Builders<BsonDocument>.Filter.Eq("name", name);
-        collection.DeleteOne(filter);
-    }
+    //public void Delete(string id) //Done
+    //{
+    //    var collection = _db.GetCollection<Customer>("customers");
+    //    var filter = Builders<Customer>.Filter.Eq("_id", id);
+    //    collection.DeleteOne(filter);
+    //}
 
-    public List<Customer> GetAll()
+    public List<Customer> GetAll() //Done
     {
-        var collection = _db.GetCollection("customers");
+        var collection = _db.GetCollection<Customer>("customers");
         var filter = new BsonDocument();
         var document = collection.Find(filter).ToList();
-        List<Customer> customers = document.Select(doc => BsonSerializer.Deserialize<Customer>(doc)).ToList();
+        List<Customer> customers = document;
 
         return customers;
     }
 
-    public Customer GetByCode(string name)
-    {
-        var collection = _db.GetCollection("customers");
-        var filter = Builders<BsonDocument>.Filter.Eq("name", name);
-        var document = collection.Find(filter).FirstOrDefault();
-        Customer customer = BsonSerializer.Deserialize<Customer>(document);
+    //public Customer GetByCode(string id) //Done
+    //{
+    //    var collection = _db.GetCollection<Customer>("customers");
+    //    var filter = Builders<Customer>.Filter.Eq("_id", id);
+    //    var document = collection.Find(filter).FirstOrDefault();
+    //    if (document == null)
+    //        return null;
+    //    Customer customer = BsonSerializer.Deserialize<Customer>(document);
+    //    return customer;
+    //}
 
-        return customer;
-    }
+    //public void Insert(string namer)
+    //{
+    //    var collection = _db.GetCollection("customers");
+    //    Customer document = new()
+    //    {
+    //        Id = Guid.NewGuid(),
+    //        code = _cg.GenerateCode("customers"),
+    //        type = new CodeName()
+    //        {
+    //            code = , 
+    //            name =
+    //        },
+    //        name = ,
+    //        nickname = ,
+    //        description = ,
+    //        person_type = new CodeName()
+    //        {
+    //            code = ,
+    //            name = ,
+    //        },
+    //        identity_type= new CodeName()
+    //        {
+    //            code = ,
+    //            name = ,
+    //        },
+    //        identity = ,
+    //        brithdate = ,
+    //        enabled = true,
+    //        addresses = /*cria var com lista e add aqui*/,
+    //        phones = /*cria var com lista e add aqui*/,
+    //        emails = /*cria var com lista e add aqui*/,
+    //        avatar = ,
+    //        image = ,
+    //        color = ,
+    //        reference_code = ,
+    //        note =
 
-    public void Insert(string namer)
-    {
-        var collection = _db.GetCollection("customers");
-        Customer document = new() { Id = ObjectId.GenerateNewId(), name = namer };
-        BsonDocument newDoc = new() { { "_id" , document.Id }, { "name", document.name } };
-        collection.InsertOne(newDoc);
-    }
+    //    };
+    //    //collection.InsertOne(newDoc);
+    //}
 
-    public Customer Update()
-    {
-        throw new NotImplementedException();
-    }
+    //public void Update(string oldName, string newName)
+    //{
+    //    var collection = _db.GetCollection("customers");
+    //    var filter = Builders<BsonDocument>.Filter.Eq("name", oldName);
+    //    var update = Builders<BsonDocument>.Update.Set("name", newName);
+    //    collection.UpdateOne(filter, update);
+    //}
 }
 

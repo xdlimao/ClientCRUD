@@ -1,5 +1,4 @@
-﻿using ClientCRUD.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +9,6 @@ namespace ClientCRUD.Shared.ComplexTypes
     public class Email
     {
         public CodeName Type { get; set; }
-        public string email { get; set; }
+        public string Emaill { get; set; }
     }
 }
