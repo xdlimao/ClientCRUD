@@ -17,7 +17,7 @@ namespace ClientCRUD.Infra.Repositories;
 public class Customer
 {
     public ObjectId Id { get; set; }
-    public string name { get; set; }
+    public string? name { get; set; }
 }
 
 public class CustomerRepository : ICustomerRepository
@@ -54,9 +54,12 @@ public class CustomerRepository : ICustomerRepository
         return customer;
     }
 
-    public Customer Insert()
+    public void Insert(string namer)
     {
-        throw new NotImplementedException();
+        var collection = _db.GetCollection("customers");
+        Customer document = new() { Id = ObjectId.GenerateNewId(), name = namer };
+        BsonDocument newDoc = new() { { "_id" , document.Id }, { "name", document.name } };
+        collection.InsertOne(newDoc);
     }
 
     public Customer Update()

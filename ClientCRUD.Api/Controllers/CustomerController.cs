@@ -18,6 +18,12 @@ namespace ClientCRUD.Api.Controllers
             customerRepository.Delete(name);
             return Ok("Deleted "+name);
         }
+        [HttpPut("/customer")]
+        public IActionResult Insert([FromServices] CustomerRepository customerRepository, [FromQuery] string namerr) 
+        {
+            customerRepository.Insert(namerr);
+            return Ok("Criado com sucesso");
+        }
         [HttpGet("")]
         public IActionResult Status()
         {

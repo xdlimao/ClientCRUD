@@ -12,7 +12,7 @@ namespace ClientCRUD.Infra.Repositories.Interfaces
     {
         public List<Customer> GetAll();
         public Customer GetByCode(string name);
-        public Customer Insert();
+        public void Insert(string namer);
         public Customer Update();
         public void Delete(string name);
     }
