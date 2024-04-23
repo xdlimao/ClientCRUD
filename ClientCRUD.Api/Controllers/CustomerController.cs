@@ -1,4 +1,5 @@
 ﻿using ClientCRUD.Domain.Entities;
+using ClientCRUD.Infra.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientCRUD.Api.Controllers
@@ -8,12 +9,19 @@ namespace ClientCRUD.Api.Controllers
     public class CustomerController : ControllerBase
     {
         [HttpGet("/customer")]
-        public List<Customer> GetAll()
+        public IActionResult GetAll([FromServices] CustomerRepository customerRepository) => Ok(customerRepository.GetAll());
+        [HttpGet("/customer/{name}")]
+        public IActionResult GetByCode([FromRoute] string name, [FromServices] CustomerRepository customerRepository) => Ok(customerRepository.GetByCode(name));
+        [HttpDelete("/customer/{name}")]
+        public IActionResult DeleteByCode([FromRoute] string name, [FromServices] CustomerRepository customerRepository)
         {
+            customerRepository.Delete(name);
+            return Ok("Deleted "+name);
         }
-        [HttpGet("/customer/{code:int}")]
-        public Customer GetByCode(int code)
+        [HttpGet("")]
+        public IActionResult Status()
         {
+            return Ok("API Online");
         }
     }
 }

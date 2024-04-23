@@ -1,19 +1,24 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ClientCRUD.Infra.Context;
-public class MongoDBContext
+namespace ClientCRUD.Infra.Context
 {
-    private const string _connectionString = "";
-    private readonly IMongoDatabase _database;
-
-    public MongoDBContext(string databaseName)
+    public class MongoDbContext
     {
-        var client = new MongoClient(_connectionString);
-        _database = client.GetDatabase(databaseName);
-    }
-
-    public IMongoCollection<T> GetCollection<T>(string collectionName)
-    {
-        return _database.GetCollection<T>(collectionName);
+        private readonly IMongoDatabase collection;
+        public MongoDbContext() 
+        {
+            var client = new MongoClient("mongodb://localhost:27017");
+            collection = client.GetDatabase("Client");
+        }
+        public IMongoCollection<BsonDocument> GetCollection(string collectiondefiner)
+        {
+            return collection.GetCollection<BsonDocument>(collectiondefiner);
+        }
     }
 }

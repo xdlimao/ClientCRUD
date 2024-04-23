@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientCRUD.Infra.Repositores.Interfaces
+namespace ClientCRUD.Infra.Repositories.Interfaces
 {
     public interface ICustomerRepository
     {
         public List<Customer> GetAll();
-        public Customer GetByCode();
+        public Customer GetByCode(string name);
         public Customer Insert();
         public Customer Update();
-        public Customer Delete();
+        public void Delete(string name);
     }
 }
