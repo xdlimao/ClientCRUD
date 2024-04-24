@@ -1,5 +1,4 @@
 ﻿using ClientCRUD.Domain.Entities;
-using ClientCRUD.Domain.RequestTemplate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +10,9 @@ namespace ClientCRUD.Domain.Repositories
     public interface ICustomerRepository
     {
         public List<Customer> GetAll(); //Done
-        //public Customer GetByCode(string id);
-        //public void Insert(string namer);
-        //public void Update(string oldName, string newName);
-        //public void Delete(string id);
+        public Customer GetById(string id); //Done
+        public void Insert(Customer customer); //Done
+        public void Update(Customer customer); //Done
+        public void Delete(string id); //Done
     }
 }

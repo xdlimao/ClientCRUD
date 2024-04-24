@@ -17,7 +17,7 @@ namespace ClientCRUD.Infra.Mappings
             BsonClassMap.RegisterClassMap<Customer>(classMap =>
             {
                 //classMap.AutoMap(); <- só funciona com camelCase e não com PascalCase
-                classMap.MapMember(c => c.Id).SetElementName("_id");
+                classMap.MapIdMember(c => c.Id);
                 classMap.MapMember(c => c.Code).SetElementName("code");
                 classMap.MapMember(c => c.Type).SetElementName("type");
                 classMap.MapMember(c => c.Name).SetElementName("name");
@@ -35,7 +35,7 @@ namespace ClientCRUD.Infra.Mappings
                 classMap.MapMember(c => c.Image).SetElementName("image");
                 classMap.MapMember(c => c.Color).SetElementName("color");
                 classMap.MapMember(c => c.ReferenceCode).SetElementName("reference_code");
-                classMap.MapMember(c => c.Note).SetElementName("Note");
+                classMap.MapMember(c => c.Note).SetElementName("note");
             });
         }
     }

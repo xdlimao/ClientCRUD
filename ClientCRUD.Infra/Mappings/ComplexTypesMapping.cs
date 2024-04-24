@@ -27,7 +27,7 @@ namespace ClientCRUD.Infra.Mappings
             BsonClassMap.RegisterClassMap<Email>(classMap =>
             {
                 classMap.MapMember(c => c.Type).SetElementName("type");
-                classMap.MapMember(c => c.Emaill).SetElementName("email");
+                classMap.MapMember(c => c.Address).SetElementName("address");
             });
             BsonClassMap.RegisterClassMap<Phone>(classMap =>
             {

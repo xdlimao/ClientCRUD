@@ -1,9 +1,10 @@
 ﻿using ClientCRUD.Domain.Entities;
 using ClientCRUD.Domain.Repositories;
 using ClientCRUD.Infra.Context;
-using ClientCRUD.Infra.Services;
+using ClientCRUD.Shared.ComplexTypes;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
 using System;
@@ -18,18 +19,16 @@ namespace ClientCRUD.Infra.Repositories;
 public class CustomerRepository : ICustomerRepository
 {
     private MongoDbContext<Customer> _db;
-    private CodeGenerator _cg;
-    public CustomerRepository(MongoDbContext<Customer> mongoDbContext, CodeGenerator codeGenerator)
+    public CustomerRepository(MongoDbContext<Customer> mongoDbContext)
     {
         _db = mongoDbContext;
-        _cg = codeGenerator;
     }
-    //public void Delete(string id) //Done
-    //{
-    //    var collection = _db.GetCollection<Customer>("customers");
-    //    var filter = Builders<Customer>.Filter.Eq("_id", id);
-    //    collection.DeleteOne(filter);
-    //}
+    public void Delete(string id) //Done
+    {
+        var collection = _db.GetCollection<Customer>("customers");
+        var filter = Builders<Customer>.Filter.Eq("_id", id);
+        collection.DeleteOne(filter);
+    }
 
     public List<Customer> GetAll() //Done
     {
@@ -41,64 +40,43 @@ public class CustomerRepository : ICustomerRepository
         return customers;
     }
 
-    //public Customer GetByCode(string id) //Done
-    //{
-    //    var collection = _db.GetCollection<Customer>("customers");
-    //    var filter = Builders<Customer>.Filter.Eq("_id", id);
-    //    var document = collection.Find(filter).FirstOrDefault();
-    //    if (document == null)
-    //        return null;
-    //    Customer customer = BsonSerializer.Deserialize<Customer>(document);
-    //    return customer;
-    //}
+    public Customer GetById(string id) //Done
+    {
+        var collection = _db.GetCollection<Customer>("customers");
+        var filter = Builders<Customer>.Filter.Eq("_id", id);
+        var document = collection.Find(filter).FirstOrDefault();
+        return document;
+    }
 
-    //public void Insert(string namer)
-    //{
-    //    var collection = _db.GetCollection("customers");
-    //    Customer document = new()
-    //    {
-    //        Id = Guid.NewGuid(),
-    //        code = _cg.GenerateCode("customers"),
-    //        type = new CodeName()
-    //        {
-    //            code = , 
-    //            name =
-    //        },
-    //        name = ,
-    //        nickname = ,
-    //        description = ,
-    //        person_type = new CodeName()
-    //        {
-    //            code = ,
-    //            name = ,
-    //        },
-    //        identity_type= new CodeName()
-    //        {
-    //            code = ,
-    //            name = ,
-    //        },
-    //        identity = ,
-    //        brithdate = ,
-    //        enabled = true,
-    //        addresses = /*cria var com lista e add aqui*/,
-    //        phones = /*cria var com lista e add aqui*/,
-    //        emails = /*cria var com lista e add aqui*/,
-    //        avatar = ,
-    //        image = ,
-    //        color = ,
-    //        reference_code = ,
-    //        note =
+    public void Insert(Customer customer) //Done
+    {
+        var collection = _db.GetCollection<Customer>("customers");
+        collection.InsertOne(customer);
+    }
 
-    //    };
-    //    //collection.InsertOne(newDoc);
-    //}
-
-    //public void Update(string oldName, string newName)
-    //{
-    //    var collection = _db.GetCollection("customers");
-    //    var filter = Builders<BsonDocument>.Filter.Eq("name", oldName);
-    //    var update = Builders<BsonDocument>.Update.Set("name", newName);
-    //    collection.UpdateOne(filter, update);
-    //}
+    public void Update(Customer customer)
+    {
+        var collection = _db.GetCollection<Customer>("customers");
+        var filter = Builders<Customer>.Filter.Eq("_id", customer.Id);
+        var update = Builders<Customer>.Update
+            .Set("Code", customer.Code)
+            .Set("Type", customer.Type)
+            .Set("Name", customer.Name)
+            .Set("Nickname", customer.Name)
+            .Set("Description", customer.Description)
+            .Set("PersonType", customer.PersonType)
+            .Set("IdentityType", customer.IdentityType)
+            .Set("Identity", customer.Identity)
+            .Set("Birthdate", customer.Birthdate)
+            .Set("Enabled", customer.Enabled)
+            .Set("Addresses", customer.Addresses)
+            .Set("Phones", customer.Phones)
+            .Set("Emails", customer.Emails)
+            .Set("Avatar", customer.Avatar)
+            .Set("Image", customer.Image)
+            .Set("Color", customer.Color)
+            .Set("ReferenceCode", customer.ReferenceCode)
+            .Set("Note", customer.Note);
+        collection.UpdateOne(filter, update);
+    }
 }
-
