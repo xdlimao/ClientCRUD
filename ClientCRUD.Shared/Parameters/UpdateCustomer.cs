@@ -16,7 +16,7 @@ namespace ClientCRUD.Shared.Parameters
             Emails = new List<Email>();
         }
         public Guid Id { get; set; }
-        public int? Code { get; set; }
+        public int Code { get; set; } = 0;
         public string? Name { get; set; }
         public CodeName? Type { get; set; }
         public string? Nickname { get; set; }
@@ -25,7 +25,7 @@ namespace ClientCRUD.Shared.Parameters
         public CodeName? IdentityType { get; set; }
         public string? Identity { get; set; }
         public DateTime? Birthdate { get; set; }
-        public bool? Enabled {  get; set; }
+        public bool Enabled { get; set; } = true;
         public List<Address>? Addresses { get; set; }
         public List<Phone>? Phones { get; set; }
         public List<Email>? Emails { get; set; }

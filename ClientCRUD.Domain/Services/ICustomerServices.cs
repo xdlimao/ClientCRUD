@@ -15,6 +15,6 @@ namespace ClientCRUD.Domain.Services
         public bool DeleteCustomerById(string id); //Done
         public Customer InsertCustomer(Customer customer); //Done
         public Customer UpdateCustomer(Customer customer);
-        //public Customer CompareOldNewCustomer(UpdateCustomer updtcustomer);
+        public Customer CompareOldNewCustomer(UpdateCustomer updtcustomer); //Done
     }
 }

@@ -34,18 +34,14 @@ public class CustomerRepository : ICustomerRepository
     {
         var collection = _db.GetCollection<Customer>("customers");
         var filter = new BsonDocument();
-        var document = collection.Find(filter).ToList();
-        List<Customer> customers = document;
-
-        return customers;
+        return collection.Find(filter).ToList();       
     }
 
     public Customer GetById(string id) //Done
     {
         var collection = _db.GetCollection<Customer>("customers");
         var filter = Builders<Customer>.Filter.Eq("_id", id);
-        var document = collection.Find(filter).FirstOrDefault();
-        return document;
+        return collection.Find(filter).FirstOrDefault();
     }
 
     public void Insert(Customer customer) //Done

@@ -120,12 +120,15 @@ namespace ClientCRUD.Api.Controllers
             var result = _customerServices.InsertCustomer(customer);
             return Ok(result);
         }
-        //[HttpPut("/customer")]
-        //public IActionResult Update([FromBody] UpdateCustomer updtcustomer)
-        //{
-        //    _customerServices.Update();
-        //    return Ok(_customerServices.GetCustomerById());
-        //}
+        [HttpPut("/customer")]
+        public IActionResult Update([FromBody] UpdateCustomer updtcustomer)
+        {
+            var customer = _customerServices.CompareOldNewCustomer(updtcustomer);
+            if (customer == null)
+                return NotFound($"Not found the id: {updtcustomer.Id}");
+            _customerServices.UpdateCustomer(customer);
+            return Ok(_customerServices.GetCustomerById(customer.Id.ToString()));
+        }
         [HttpGet("")]
         public IActionResult Status()
         {
