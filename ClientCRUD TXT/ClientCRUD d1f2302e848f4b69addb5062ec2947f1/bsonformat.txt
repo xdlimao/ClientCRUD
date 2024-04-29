@@ -1,0 +1,63 @@
+{
+  "_id": "92a8300c-15d1-4055-a3a8-8a6c0d35eef5",
+  "code": 123,
+  "type": {
+    "code": 456,
+    "name": "ExampleType"
+  },
+  "name": "Nome do Cliente",
+  "nickname": "Apelido",
+  "description": "Descrição do cliente",
+  "person_type": {
+    "code": 789,
+    "name": "Tipo de Pessoa"
+  },
+  "identity_type": {
+    "code": 321,
+    "name": "Tipo de Identidade"
+  },
+  "identity": "Número de Identidade",
+  "birthdate": "1990-01-01T00:00:00Z",
+  "enabled": true,
+  "addresses": [
+    {
+      "type": {
+        "code": 1,
+        "name": "Tipo de endereço"
+      },
+      "street": "Rua Exemplo",
+      "number": "333",
+      "complement": null,
+      "neighborhood": "Bairro Exemplo",
+      "city": "Cidade Exemplo",
+      "state": "Estado Exemplo",
+      "country": "País Exemplo",
+      "postal_code": "CEP Exemplo"
+    }
+  ],
+  "phones": [
+    {
+      "type": {
+        "code": 111,
+        "name": "Tipo de Telefone"
+      },
+      "country_code": "+xxx",
+      "ddd": "yy",
+      "phone_number": "123456789"
+    }
+  ],
+  "emails": [
+    {
+      "type": {
+        "code": 333,
+        "name": "Tipo de Email"
+      },
+      "email": "cliente@example.com"
+    }
+  ],
+  "avatar": "URL da Imagem",
+  "image": "URL da Imagem",
+  "color": "#ffffff",
+  "reference_code": "Código de Referência",
+  "note": "Observações adicionais"
+}
