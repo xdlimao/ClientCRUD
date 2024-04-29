@@ -10,11 +10,11 @@ namespace ClientCRUD.Domain.Services
 {
     public interface ICustomerServices
     {
-        public List<Customer> GetCustomers(); //Done
-        public Customer GetCustomerById(string id); //Done
-        public bool DeleteCustomerById(string id); //Done
-        public Customer InsertCustomer(Customer customer); //Done
-        public Customer UpdateCustomer(Customer customer);
-        public Customer CompareOldNewCustomer(UpdateCustomer updtcustomer); //Done
+        public Task<List<Customer>> GetCustomers(); //Done
+        public Task<Customer> GetCustomerById(string id); //Done
+        public Task<bool> DeleteCustomerById(string id); //Done
+        public Task<Customer> InsertCustomer(Customer customer); //Done
+        public Task<Customer> UpdateCustomer(Customer customer);
+        public Task<Customer> CompareOldNewCustomer(UpdateCustomer updtcustomer); //Done
     }
 }

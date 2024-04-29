@@ -11,10 +11,16 @@ namespace ClientCRUD.Domain.Entities
     {
         public Customer()
         {
+            Id = Guid.NewGuid();
+            Type = new CodeName();
+            PersonType = new CodeName();
+            IdentityType = new CodeName();
+            Birthdate = new DateTime();
             Addresses = new List<Address>();
             Phones = new List<Phone>();
             Emails = new List<Email>();
         }
+
         public Guid Id { get; set; } 
         public int Code { get; set; }
         public CodeName Type { get; set; }
@@ -34,5 +40,12 @@ namespace ClientCRUD.Domain.Entities
         public string? Color { get; set; } //HEX(#xxxxxx) or RGB(x,x,x)
         public string? ReferenceCode { get; set; }
         public string? Note { get; set; }
+
+        public override string ToString()
+        {
+            if (this.Name == null)
+                return "NameNull";
+            return this.Name;
+        }
     }
 }

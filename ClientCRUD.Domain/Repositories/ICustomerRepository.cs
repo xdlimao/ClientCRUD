@@ -9,10 +9,10 @@ namespace ClientCRUD.Domain.Repositories
 {
     public interface ICustomerRepository
     {
-        public List<Customer> GetAll(); //Done
-        public Customer GetById(string id); //Done
-        public void Insert(Customer customer); //Done
-        public void Update(Customer customer); //Done
-        public void Delete(string id); //Done
+        public Task<List<Customer>> GetAll(); //Done
+        public Task<Customer> GetById(string id); //Done
+        public Task Insert(Customer customer); //Done
+        public Task Update(Customer customer); //Done
+        public Task Delete(string id); //Done
     }
 }
