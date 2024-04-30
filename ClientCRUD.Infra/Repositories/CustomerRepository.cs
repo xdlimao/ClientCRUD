@@ -23,34 +23,37 @@ public class CustomerRepository : ICustomerRepository
     {
         _db = mongoDbContext;
     }
-    public void Delete(string id) //Done
+    //Lembrando que todos os métodos são Async (preguiça de renomear, pois sem ReSharp xd)
+    public async Task Delete(string id) //Done
     {
         var collection = _db.GetCollection<Customer>("customers");
         var filter = Builders<Customer>.Filter.Eq("_id", id);
-        collection.DeleteOne(filter);
+        await collection.DeleteOneAsync(filter);
     }
 
-    public List<Customer> GetAll() //Done
+    public async Task<List<Customer>> GetAll() //Done
     {
         var collection = _db.GetCollection<Customer>("customers");
         var filter = new BsonDocument();
-        return collection.Find(filter).ToList();       
+        var result = await collection.FindAsync(filter);
+        return await result.ToListAsync();
     }
 
-    public Customer GetById(string id) //Done
+    public async Task<Customer> GetById(string id) //Done
     {
         var collection = _db.GetCollection<Customer>("customers");
         var filter = Builders<Customer>.Filter.Eq("_id", id);
-        return collection.Find(filter).FirstOrDefault();
+        var result = await collection.FindAsync(filter);
+        return await result.FirstOrDefaultAsync();
     }
 
-    public void Insert(Customer customer) //Done
+    public async Task Insert(Customer customer) //Done
     {
         var collection = _db.GetCollection<Customer>("customers");
-        collection.InsertOne(customer);
+        await collection.InsertOneAsync(customer);
     }
 
-    public void Update(Customer customer)
+    public async Task Update(Customer customer)
     {
         var collection = _db.GetCollection<Customer>("customers");
         var filter = Builders<Customer>.Filter.Eq("_id", customer.Id);
@@ -73,6 +76,6 @@ public class CustomerRepository : ICustomerRepository
             .Set("Color", customer.Color)
             .Set("ReferenceCode", customer.ReferenceCode)
             .Set("Note", customer.Note);
-        collection.UpdateOne(filter, update);
+        await collection.UpdateOneAsync(filter, update);
     }
 }

@@ -17,34 +17,34 @@ namespace ClientCRUD.Infra.Services
         {
             _customerRepository = customerRepository;
         }
-        public List<Customer> GetCustomers() //Done
+        public async Task<List<Customer>> GetCustomers() //Done
         {
-            return _customerRepository.GetAll();
+            return await _customerRepository.GetAll();
         }
-        public Customer GetCustomerById(string id) //Done
+        public async Task<Customer> GetCustomerById(string id) //Done
         {
-            return _customerRepository.GetById(id);
+            return await _customerRepository.GetById(id);
         }
-        public bool DeleteCustomerById(string id) //Done
+        public async Task<bool> DeleteCustomerById(string id) //Done
         {
             if (string.IsNullOrEmpty(id) || _customerRepository.GetById(id) == null) return false;
-            _customerRepository.Delete(id);
+            await _customerRepository.Delete(id);
             return true;
         }
-        public Customer InsertCustomer(Customer customer) //Done
+        public async Task<Customer> InsertCustomer(Customer customer) //Done
         {
-            _customerRepository.Insert(customer);
-            return _customerRepository.GetById(customer.Id.ToString());
+            await _customerRepository.Insert(customer);
+            return await _customerRepository.GetById(customer.Id.ToString());
         }
-        public Customer UpdateCustomer(Customer customer)
+        public async Task<Customer> UpdateCustomer(Customer customer)
         {
-            _customerRepository.Update(customer);
-            return _customerRepository.GetById(customer.Id.ToString());
+            await _customerRepository.Update(customer);
+            return await _customerRepository.GetById(customer.Id.ToString());
         }
 
-        public Customer CompareOldNewCustomer(UpdateCustomer updtcustomer)
+        public async Task<Customer> CompareOldNewCustomer(UpdateCustomer updtcustomer)
         {
-            Customer customerfinal = _customerRepository.GetById(updtcustomer.Id.ToString());
+            Customer customerfinal = await _customerRepository.GetById(updtcustomer.Id.ToString());
             if(customerfinal != null)
             {
                 if (updtcustomer.Type != null && updtcustomer.Type != customerfinal.Type)

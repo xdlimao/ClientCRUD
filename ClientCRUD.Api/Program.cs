@@ -6,8 +6,6 @@ using ClientCRUD.Infra.Services;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
-using ClientCRUD.Domain.Repositories;
-using ClientCRUD.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

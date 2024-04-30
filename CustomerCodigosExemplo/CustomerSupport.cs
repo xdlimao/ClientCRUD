@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 namespace Ajinsoft.Tools.v3.Customers
 {
-public class CustomerSupport
-{
-public IEnumerable<CodeNameColor> Status => CustomerStatus.GetAll();
-public IEnumerable<CodeName> Types => CustomerType.GetAll();
-}
+	public class CustomerSupport
+	{
+		public IEnumerable<CodeNameColor> Status => CustomerStatus.GetAll();
+		public IEnumerable<CodeName> Types => CustomerType.GetAll();
+	}
 }

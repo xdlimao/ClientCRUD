@@ -17,117 +17,62 @@ namespace ClientCRUD.Api.Controllers
             _customerServices = customerServices;
         }
         [HttpGet("/customer")]
-        public IActionResult GetAll() => Ok(_customerServices.GetCustomers()); //Done
+        public async Task<IActionResult> GetAll() => Ok(await _customerServices.GetCustomers()); //Done
         [HttpGet("/customer/less")]
-        public IActionResult GetAllWithoutDetails() //Done
+        public async Task<IActionResult> GetAllWithoutDetails() //Done
         {
-            var result = _customerServices.GetCustomers();
+            var result = await _customerServices.GetCustomers();
             List<NoDetailsCustomer> customers = new List<NoDetailsCustomer>();
             for(int i = 0; i < result.Count(); i++)
             {
-                customers.Add(new NoDetailsCustomer()
-                {
-                    Code = result[i].Code,
-                    Type = result[i].Type,
-                    Name = result[i].Name,
-                    Description = result[i].Description,
-                    IdentityType = result[i].IdentityType,
-                    Identity = result[i].Identity,
-                    Addresses = result[i].Addresses,
-                    Phones = result[i].Phones,
-                    Emails = result[i].Emails
-                });
+                customers.Add(CustomerToNoDetails.Convert(result[i]));
             }
             return Ok(customers);
         }
         [HttpGet("/customer/{id}")]
-        public IActionResult GetByCode([FromRoute] string id) //Done
+        public async Task<IActionResult> GetByCode([FromRoute] string id) //Done
         {
-            var customer = _customerServices.GetCustomerById(id);
+            var customer = await _customerServices.GetCustomerById(id);
             if (customer == null)
                 return NotFound($"Not found the id: {id}");
             return Ok(customer);
         }
         [HttpGet("/customer/{id}/less")]
-        public IActionResult GetByCodeWithoutDetails([FromRoute] string id) //Done
+        public async Task<IActionResult> GetByCodeWithoutDetails([FromRoute] string id) //Done
         {
-            var result = _customerServices.GetCustomerById(id);
+            var result = await _customerServices.GetCustomerById(id);
             if (result == null)
                 return NotFound($"Not found the id: {id}");
-            NoDetailsCustomer customer = new()
-            {
-                Code = result.Code,
-                Type = result.Type,
-                Name = result.Name,
-                Description = result.Description,
-                IdentityType = result.IdentityType,
-                Identity = result.Identity,
-                Addresses = result.Addresses,
-                Phones = result.Phones,
-                Emails = result.Emails
-            };
-            return Ok(customer);
+            return Ok(CustomerToNoDetails.Convert(result));
         }
         [HttpDelete("/customer/{id}")]
-        public IActionResult DeleteByCode([FromRoute] string id) //Done
+        public async Task<IActionResult> DeleteByCode([FromRoute] string id) //Done
         {
-            var result = _customerServices.DeleteCustomerById(id);
+            var result = await _customerServices.DeleteCustomerById(id);
             if (!result) 
                 return NotFound($"Not found the id: {id}");
             return Ok($"{id} deleted with success");
         }
         [HttpPost("/customer")]
-        public IActionResult InsertAllValues([FromBody] CreateCustomer newcustomer) //Done
+        public async Task<IActionResult> InsertAllValues([FromBody] CreateCustomer newcustomer) //Done
         {
-            Customer customer = new()
-            {
-                Id = Guid.NewGuid(),
-                Code = newcustomer.Code,
-                Name = newcustomer.Name,
-                Type = newcustomer.Type,
-                Nickname = newcustomer.Nickname,
-                Description = newcustomer.Description,
-                PersonType = newcustomer.PersonType,
-                IdentityType = newcustomer.IdentityType,
-                Identity = newcustomer.Identity,
-                Birthdate = newcustomer.Birthdate,
-                Enabled = true,
-                Addresses = newcustomer.Addresses,
-                Phones = newcustomer.Phones,
-                Emails = newcustomer.Emails,
-                Avatar = newcustomer.Avatar,
-                Image = newcustomer.Image,
-                Color = newcustomer.Color,
-                ReferenceCode = newcustomer.ReferenceCode,
-                Note = newcustomer.Note
-            };
-            var result = _customerServices.InsertCustomer(customer);
+            var result = await _customerServices.InsertCustomer(CreateCustomerToCustomer.Convert(newcustomer));
             return Ok(result);
         }
         [HttpPost("/customer/less")]
-        public IActionResult InsertMandatoryValues([FromBody] CreateCustomerMinimum newcustomer) //Done
+        public async Task<IActionResult> InsertMandatoryValues([FromBody] CreateCustomerMinimum newcustomer) //Done
         {
-            Customer customer = new()
-            {
-                Id = Guid.NewGuid(),
-                Code = newcustomer.Code,
-                Type = newcustomer.Type,
-                Addresses = newcustomer.Addresses,
-                Emails = newcustomer.Emails,
-                Phones = newcustomer.Phones,
-                Enabled = true
-            };
-            var result = _customerServices.InsertCustomer(customer);
+            var result = await _customerServices.InsertCustomer(CreateCustomerMinimunToCustomer.Convert(newcustomer));
             return Ok(result);
         }
         [HttpPut("/customer")]
-        public IActionResult Update([FromBody] UpdateCustomer updtcustomer)
+        public async Task<IActionResult> Update([FromBody] UpdateCustomer updtcustomer)
         {
-            var customer = _customerServices.CompareOldNewCustomer(updtcustomer);
+            var customer = await _customerServices.CompareOldNewCustomer(updtcustomer);
             if (customer == null)
                 return NotFound($"Not found the id: {updtcustomer.Id}");
-            _customerServices.UpdateCustomer(customer);
-            return Ok(_customerServices.GetCustomerById(customer.Id.ToString()));
+            await _customerServices.UpdateCustomer(customer);
+            return Ok(await _customerServices.GetCustomerById(customer.Id.ToString()));
         }
         [HttpGet("")]
         public IActionResult Status()
