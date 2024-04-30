@@ -1,0 +1,678 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Arquivos para revisar</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b2b62bd2-cd67-490e-8aa3-aa6b883b8402" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/bluetooth_blue.svg"/></div><h1 class="page-title">Arquivos para revisar</h1><p class="page-description"></p></header><div class="page-body"><p id="d15875b1-0c60-4443-9aaa-532d73be5e38" class="">→ Marcar se revisou, após, escrever se teve duvida, se sim, qual? se não, resumir o arquivo. Caso queira, pode resumir mesmo com dúvida.</p><p id="725a7fa1-302f-4b0f-bb72-3c59cafc3850" class="">→ Não precisa ver os complicados como por exemplo filtros.</p><p id="76c5258a-47a6-4e0b-a026-1be626fa7411" class="">→ Mudar o seu projeto ClientCRUD para ficar no modelo que está apresentado nesses arquivos</p><p id="2c0303eb-2aa0-40c8-b5f8-2562786c3157" class="">Duvídas existente: </p><ul id="f5d0cda8-492d-4b2f-a6ed-ee3b41a8290f" class="bulleted-list"><li style="list-style-type:disc">CustomerEntityFields.cs</li></ul><ul id="6465aced-a43b-4579-8434-42cef369cac3" class="bulleted-list"><li style="list-style-type:disc">CustomerToTrash.cs</li></ul><ul id="efc545a9-b4ac-40f8-a638-a3ed509c0e79" class="bulleted-list"><li style="list-style-type:disc">CustomerUpdate.cs</li></ul><ul id="33655839-4ef7-46a0-8aae-412728f5fa69" class="bulleted-list"><li style="list-style-type:disc">CustomerRules.cs</li></ul><ul id="c92a76a9-4669-42d9-b971-3ea3314c884f" class="bulleted-list"><li style="list-style-type:disc">CustomerUpdateStatus.cs</li></ul><ul id="8dffc282-4b75-44f8-b10f-35ae3d1128e5" class="bulleted-list"><li style="list-style-type:disc">CustomerSupport.cs</li></ul><ul id="379d5cfb-6336-46b6-96b6-255a5352ceed" class="bulleted-list"><li style="list-style-type:disc">CustomerSupportController.cs</li></ul><ul id="716a63e2-136a-4690-9639-3a7c22fa4c78" class="bulleted-list"><li style="list-style-type:disc">CustomerFilterField.cs</li></ul><ul id="65e2f4b1-6791-4d93-a695-e95de74f2692" class="bulleted-list"><li style="list-style-type:disc">CustomerLevelFilter.cs</li></ul><hr id="d51694ab-12ba-4b39-895f-d3872def9981"/><ul id="b6d44d66-b844-414a-bc61-e18663ab0fc1" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Customer.cs</span><div class="indented"><p id="60dfe2c4-8c3f-4348-89e5-5c50e81b0d2a" class="">Dúvida? Não</p><p id="3c731cb4-44bc-4dda-8611-cc9bd76aa95f" class="">Resumo: Classe normal com todos os atributos, todos os objetos e lista instanciados e um override no ToString()</p></div></li></ul><ul id="1cce4de8-05cd-4680-ac8e-0588038f6b0b" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerController.cs</span><div class="indented"><p id="abc4f104-7b72-48e7-a8dc-45bf040dec21" class="">Dúvida? Não, Impossível </p><p id="61b3c17a-5d97-4d38-9773-42a0f7209b44" class="">Resumo: Controlador</p></div></li></ul><ul id="010f1d4e-dc5c-4e7d-945f-077ebeb4198f" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerCreate.cs</span><div class="indented"><p id="07ab13ae-f5f7-4cb7-bc9f-aa48a7393ef7" class="">Dúvida? Não</p><p id="b301a447-3846-46d3-a3c9-5a98c0334676" class="">Resumo: Cria uma classe com um método estático que recebe os dados e converte para uma Entidade de escolha, no caso, Customer. A classe Customer desse exemplo é partial, ou seja, é escrita em várias lugares e tem métodos em outros arquivos de classe com mesmo nome.</p></div></li></ul><ul id="6d55d05c-f29c-4c49-a6f9-b073b19a9ac2" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerDependency.cs</span><div class="indented"><p id="a1a9d023-98ca-4d13-b6c8-727bcab5aaf9" class="">Dúvida? Não</p><p id="da6f894b-4c2a-4813-954d-8584bce095f8" class="">Resumo: Onde nós iremos adicionar dependências no nosso Program.cs (AddScoped, etc…)</p></div></li></ul><ul id="33578de6-ff62-48c1-a3da-2148ac8d684e" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerEntityField.cs</span><div class="indented"><p id="1f3d7e5a-25f7-4540-b56f-aa3aff9ae86d" class="">Dúvida? Sim</p><p id="ed7b3a20-25d4-412b-9b11-db1a72c93315" class="">Resumo: Aparentemente é uma classe que faz uma relação de entidade com campo no mongoDB.</p></div></li></ul><ul id="f67bb013-1f0b-44c3-aab8-5d38cab57f1e" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerEntityMapping.cs</span><div class="indented"><p id="0ec05042-ed24-4d39-8282-f4fb97bda4b4" class="">Dúvida? Não</p><p id="e079c515-00b8-411a-bc9c-7f6425891eaa" class="">Resumo: Classe de mapeamento de entidade. Pega uma entidade, usa um generic e você passa os nomes dos parâmetros de como irão ficar no Bson.</p></div></li></ul><ul id="1a738803-a376-4601-bff3-4422809b1bed" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerEventTypes.cs</span><div class="indented"><p id="55f1f420-23c0-43f0-bdae-a50bb0e5d421" class="">Dúvida? Não</p><p id="8b5807c5-84fd-455b-9da1-4a9e6248f3e4" class="">Resumo: Tipos de eventos que existem dentro da API</p></div></li></ul><ul id="7a2bd3a6-6e1d-4cba-a60e-5d149fe084e8" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerFilter.cs</span><div class="indented"><p id="20febb21-ed5c-4c4a-963d-3bb99838c426" class="">Dúvida? Não</p><p id="02ef5b45-5b51-46c4-ac8b-a378eb1aef68" class="">Resumo: Classe que recebe vários filtros de customer para enviar a outros lugares</p></div></li></ul><ul id="b0d0d2ba-ea13-4592-ae66-ecfbe9565d28" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerFilterField.cs</span><div class="indented"><p id="2f96fc98-91a2-4913-aa94-b560443a1173" class="">Dúvida? Sim</p><p id="6003d7ae-3ff6-4ded-9ce3-2e42036f76d4" class="">Resumo: Não entendi nada</p></div></li></ul><ul id="8a1e8856-c421-46db-af26-11fcaa202a24" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerFilterRepository.cs</span><div class="indented"><p id="c156adb1-ff10-4318-947e-2407e32598e1" class="">Dúvida? Não</p><p id="2d025833-c0cd-477c-bbfc-e00216831951" class="">Resumo: Pega um customer do Db a partir do tipo de filtro que a pessoa quer e também define o filtro</p></div></li></ul><ul id="26867434-35a0-4606-9adf-a600af361356" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerLevelFilter.cs</span><div class="indented"><p id="e6790bc9-bafd-463e-ba03-cdaa3fc6dd45" class="">Dúvida? Talvez</p><p id="10f54a40-073a-41e3-b4db-24a179063df6" class="">Resumo: Classe de tipo complexo para receber Ids de Filtro e Level</p></div></li></ul><ul id="ee5708bd-62ec-4f81-8154-336b30c39197" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerLevelService.cs</span><div class="indented"><p id="e07f95b0-b61d-4b22-959e-0faab5f22727" class="">Dúvida? Não</p><p id="0a9af36f-a21d-4966-8522-7acd8be1c530" class="">Resumo: Pega o customerFilterRepository e aplica regras de negócios para achar pelo filtro</p></div></li></ul><ul id="6a5c9f97-8c67-491f-9eef-9a413445c40c" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerMessages.cs</span><div class="indented"><p id="c0839dec-f517-4b25-a6bb-24a07e98f4bd" class="">Dúvida? Não</p><p id="db0d76ae-f81b-4d62-86b4-3d143da4a66a" class="">Resumo: Classe onde iremos definir as mensagens de status do Customer e suas operações. Dentro da classe há um tipo complexo chamado ResultMessage, que (aparentemente) recebe um Enum do tipo de erro, mensagem, código</p></div></li></ul><ul id="bba7a76f-cb53-4235-addf-4f1b3686dc31" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerParams.cs</span><div class="indented"><p id="08dd0f23-4541-4413-8e15-f8bc3b2c4cd5" class="">Dúvida? Não</p><p id="d60debcd-140b-42de-91ee-06862a062b4a" class="">Resumo: Classe que ira ser usada para receber dados. Dentro dela está apenas o parâmetros importantes que é necessário para operar a API, e, inclusive, alguns tipos complexos especiais que serão populados para passar apenas os dados necessário para a entidade principal</p></div></li></ul><ul id="0dd7b044-2bcc-4c0b-8223-dee7085a0bb1" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerRepository.cs</span><div class="indented"><p id="a50694f8-c2a3-44da-ae43-58a1abe8ac8a" class="">Dúvida? Não</p><p id="bcb5a048-b448-48d5-9933-8d976c4af52a" class="">Resumo: Repositorio padrão de dados (Acesso ao DB)</p></div></li></ul><ul id="1536ae97-44ff-4886-9887-2b06e5103769" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerRepositorySetting.cs</span><div class="indented"><p id="abcdf2de-0394-4d6a-94ae-e8202579bb11" class="">Dúvida? Não</p><p id="25e6f7e5-3e9f-442e-ac19-ae7f9c8c3e85" class="">Resumo: Essa classe é as configurações padrão do repositório. Dentro dela tem o nome da coleção para o mongoDB e o método para mapeamento da entidade</p></div></li></ul><ul id="b74465ee-e0d7-4fbf-9d48-612374e11af6" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerResult.cs</span><div class="indented"><p id="1ae6f3a0-aea9-415b-9f77-cc3856702e90" class="">Dúvida? Não</p><p id="12d40856-8281-4ea8-8855-c029b664552d" class="">Resumo: Classe feita para receber dados de requisições</p></div></li></ul><ul id="7df55b41-67e8-49ad-ab49-dc1436e93ca7" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerRules.cs</span><div class="indented"><p id="b5484208-6cef-4dcc-b995-ce1e50d2abce" class="">Dúvida? Talvez</p><p id="11e996a0-302a-4ef3-bce2-94a5bafb9a37" class="">Resumo: Adiciona as permissões de usuário de cada customer</p></div></li></ul><ul id="8c880f2c-1d2f-48fc-ad30-36c099b7982b" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerSearchRepository.cs</span><div class="indented"><p id="7a6f8f58-2475-46d7-b3fc-120038772513" class="">Dúvida? Não</p><p id="13b93d19-7514-483c-bfb3-86f38be2394f" class="">Resumo: comandos de repositorio para fazer buscar de customer (Varios tipos de Get)</p></div></li></ul><ul id="f30c3f57-223e-4368-bdbb-40575584281e" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerSearchResult.cs</span><div class="indented"><p id="83944b2b-9afa-4a97-a2c8-17dbf9cdda8d" class="">Dúvida? Não</p><p id="ee0c3759-1e34-4bee-8be7-5de12021537b" class="">Resumo: Classe de resultados para retorno de API do Repositorio Search</p></div></li></ul><ul id="3343196e-7f43-4f24-899d-4ca287c07d8a" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerSearchService.cs</span><div class="indented"><p id="2b5bb97c-cba8-462f-ab38-e8841f8665a0" class="">Dúvida? Não</p><p id="34a2093b-e988-455d-a4c0-026de8304761" class="">Resumo: Lógica de negócio para achar customer por dados especificos</p></div></li></ul><ul id="e9e99b92-f95f-41ae-b31f-0e836847d3de" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerService.cs</span><div class="indented"><p id="c80149ba-de6e-49c8-8934-81fa450b36e6" class="">Dúvida? Não</p><p id="9ec76021-6ef3-4bdd-848e-8d7ee070157b" class="">Resumo: Serviço padrão que usa repositórios e etc. Tem padrões de CRUD e mais</p></div></li></ul><ul id="60eaa905-4c84-4f17-bb23-302b53ea8abb" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerSetParams.cs</span><div class="indented"><p id="b6eacb7a-3a9c-40fa-aaec-46a0508cbbf1" class="">Dúvida? Não</p><p id="f35c96c5-690a-4a62-9ab8-2e6b304d81bd" class="">Resumo: método estatíco para definir os parametros de um customer a outra classe, usa um this Customer para retornar no fim do método uma nova variável customer</p></div></li></ul><ul id="417a86ec-3f49-4aea-908f-ddf09e7e9707" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerStatus.cs</span><div class="indented"><p id="068b28d2-9c9d-4190-9ea3-d998a93c0be4" class="">Dúvida? Não</p><p id="b132862a-fe6b-4beb-b566-4217b3927b62" class="">Resumo: Classe de status de customer para definir como ele está</p></div></li></ul><ul id="03f74db1-8a52-4a55-922d-688f3e549b05" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerSupport.cs</span><div class="indented"><p id="97ada630-5ace-4549-a743-961bcd5a31db" class="">Dúvida? Sim</p><p id="a443970d-d19c-458d-b39b-ee0a1cddf3c3" class="">Resumo: Possui métodos de recuperar os tipos Status e Type</p></div></li></ul><ul id="15d4af51-1de4-45b9-8fb3-6a32581c35c4" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerSupportController.cs</span><div class="indented"><p id="d047777c-8bca-4e26-9b7c-1e460e8c0e18" class="">Dúvida? Sim</p><p id="c8714207-c4eb-4648-b1cb-f1016840dbea" class="">Resumo: É um controlador para pedir suporte e assistência na API?</p></div></li></ul><ul id="51558995-eea4-45cd-bd86-4f59cb827509" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerToTrash.cs</span><div class="indented"><p id="2d4d41f6-9331-4936-a4da-371c5440c395" class="">Dúvida? Sim</p><p id="d480ef68-bc09-49ef-8ff7-6d1cb0a7d26a" class="">Resumo: Aparentemente é um método de extensão que guarda alguns dados e depois exclui eles?</p></div></li></ul><ul id="083571e3-0cfb-4d49-a435-e79250b71d04" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerType.cs</span><div class="indented"><p id="3d1aba0f-979c-4dbb-9ba1-00ffe05cfbf5" class="">Dúvida? Não</p><p id="ddaaf0af-19e7-4450-a5e5-8e3ce19660b2" class="">Resumo: Cria uma classe com herança em CodeName que recebe tipos de CodeName e tem dois método que resgata esses valores de tipos para o Customer pode escolher e manipular</p></div></li></ul><ul id="6e221cf8-9a4e-4566-beaa-45b6119dd4af" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerUpdate.cs</span><div class="indented"><p id="30b503cb-878f-48b5-8e53-682cda403667" class="">Dúvida? Talvez</p><p id="e6717402-fd5a-4e67-94b9-a97218b2d968" class="">Resumo: Aparentemente é uma classe de Customer que ira receber dados e atualizar a entidade</p></div></li></ul><ul id="87db3ee4-8d60-4f20-8a03-7082dadd7c78" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerUpdateSearchText.cs</span><div class="indented"><p id="2ac494fa-5078-40a2-a4e7-12ada29a80ef" class="">Dúvida? Não</p><p id="e013ebc2-0550-43aa-9e38-b3b933aecff3" class="">Resumo: Tenta achar por texto uma entidade para o Update, caso não de certo, retorne NULL</p></div></li></ul><ul id="76c557df-2675-4cae-8826-79052fc7bde3" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">CustomerUpdateStatus.cs</span><div class="indented"><p id="7747bf72-5839-428c-b113-3d54b0244751" class="">Dúvida? Sim</p><p id="2f92ccff-6bff-4c0d-9073-1745083d9152" class="">Resumo: Aparentemente é para mudar o Status do customer</p></div></li></ul><ul id="d99d8f97-25d1-4cbd-b678-78255094e94e" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">ICustomerLevelService.cs</span><div class="indented"><p id="7fcdacf8-1f08-4487-a234-ce379eb304a6" class="">Dúvida? Talvez</p><p id="e38f2739-168b-4c75-afa3-bb9d14ba1a34" class="">Resumo: Níveis de permissão do customer</p></div></li></ul><ul id="c1243c06-2b41-4863-ac90-1ac779bb5e6c" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">ICustomerRepository.cs</span><div class="indented"><p id="1ace3b71-3a6e-4f6e-87e2-05e08a213b89" class="">Dúvida? Não</p><p id="c3095549-e55b-40ad-8a90-4ec0db9fbfe9" class="">Resumo: Repositorio para abstrações para indicar o que as implementações devem fazer. Tem muita operação de banco de dados, então os métodos são async para fazer os threadss trabalharem em várias ações ao mesmo tempo</p></div></li></ul><ul id="8c796fce-2c3d-4310-a08c-79501950c2af" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">ICustomerSearchRepository.cs</span><div class="indented"><p id="1ce421d3-f6ed-49d0-abdb-96fa47f7a701" class="">Dúvida? Não</p><p id="f1896b30-14fd-490a-887e-f8a38b7920fd" class="">Resumo: Cria comandos de repositório para buscar de dados</p></div></li></ul><ul id="17249e55-7ba9-4f15-9188-a597b0017833" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">ICustomerSearchService.cs</span><div class="indented"><p id="77021f26-e9c3-4bed-bc69-5973a5110356" class="">Dúvida? Não</p><p id="dd88ee73-6161-4838-a3fd-6f049ca55e00" class="">Resumo: Abstração para achar dados usando um service para lógica de negócio</p></div></li></ul><ul id="50c906b9-f3f4-4016-bfb1-4b1f5bb378d9" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">ICustomerService.cs</span><div class="indented"><p id="70a7a154-da8e-4438-aa37-c4433d83127f" class="">Dúvida? Não</p><p id="80191911-003d-4ce7-8021-abc4ca3991d1" class="">Resumo: Serviço para abstrações para indicar o que as implementações devem fazer. Tem muita operação de db, e o tem várias funções async, então serviço também é async para evitar de bloquear o threads</p></div></li></ul><p id="4c387a8a-74c1-4ffb-8036-79458f49bcc8" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
