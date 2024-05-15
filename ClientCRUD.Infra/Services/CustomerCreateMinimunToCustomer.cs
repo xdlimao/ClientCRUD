@@ -4,9 +4,9 @@ using ClientCRUD.Shared.Parameters;
 
 namespace ClientCRUD.Infra.Services
 {
-    public class CreateCustomerMinimunToCustomer
+    public class CustomerCreateMinimunToCustomer
     {
-        public static Customer Convert(CreateCustomerMinimum newcustomer)
+        public static Customer Convert(CustomerCreateMinimum newcustomer)
         {
             return new Customer()
             {

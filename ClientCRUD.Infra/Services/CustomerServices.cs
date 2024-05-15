@@ -42,7 +42,7 @@ namespace ClientCRUD.Infra.Services
             return await _customerRepository.GetById(customer.Id.ToString());
         }
 
-        public async Task<Customer> CompareOldNewCustomer(UpdateCustomer updtcustomer)
+        public async Task<Customer> CompareOldNewCustomer(CustomerUpdate updtcustomer)
         {
             Customer customerfinal = await _customerRepository.GetById(updtcustomer.Id.ToString());
             if(customerfinal != null)

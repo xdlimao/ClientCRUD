@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ClientCRUD.Infra.Services
 {
-    public class CreateCustomerToCustomer
+    public class CustomerCreateToCustomer
     {
-        public static Customer Convert(CreateCustomer newcustomer)
+        public static Customer Convert(CustomerCreate newcustomer)
         {
             return new Customer()
             {

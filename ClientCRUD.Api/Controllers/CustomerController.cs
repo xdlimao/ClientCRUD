@@ -22,7 +22,7 @@ namespace ClientCRUD.Api.Controllers
         public async Task<IActionResult> GetAllWithoutDetails() //Done
         {
             var result = await _customerServices.GetCustomers();
-            List<NoDetailsCustomer> customers = new List<NoDetailsCustomer>();
+            List<CustomerNoDetails> customers = new List<CustomerNoDetails>();
             for(int i = 0; i < result.Count(); i++)
             {
                 customers.Add(CustomerToNoDetails.Convert(result[i]));
@@ -54,19 +54,19 @@ namespace ClientCRUD.Api.Controllers
             return Ok($"{id} deleted with success");
         }
         [HttpPost("/customer")]
-        public async Task<IActionResult> InsertAllValues([FromBody] CreateCustomer newcustomer) //Done
+        public async Task<IActionResult> InsertAllValues([FromBody] CustomerCreate newcustomer) //Done
         {
-            var result = await _customerServices.InsertCustomer(CreateCustomerToCustomer.Convert(newcustomer));
+            var result = await _customerServices.InsertCustomer(CustomerCreateToCustomer.Convert(newcustomer));
             return Ok(result);
         }
         [HttpPost("/customer/less")]
-        public async Task<IActionResult> InsertMandatoryValues([FromBody] CreateCustomerMinimum newcustomer) //Done
+        public async Task<IActionResult> InsertMandatoryValues([FromBody] CustomerCreateMinimum newcustomer) //Done
         {
-            var result = await _customerServices.InsertCustomer(CreateCustomerMinimunToCustomer.Convert(newcustomer));
+            var result = await _customerServices.InsertCustomer(CustomerCreateMinimunToCustomer.Convert(newcustomer));
             return Ok(result);
         }
         [HttpPut("/customer")]
-        public async Task<IActionResult> Update([FromBody] UpdateCustomer updtcustomer)
+        public async Task<IActionResult> Update([FromBody] CustomerUpdate updtcustomer)
         {
             var customer = await _customerServices.CompareOldNewCustomer(updtcustomer);
             if (customer == null)

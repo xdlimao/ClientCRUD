@@ -15,6 +15,6 @@ namespace ClientCRUD.Domain.Services
         public Task<bool> DeleteCustomerById(string id); //Done
         public Task<Customer> InsertCustomer(Customer customer); //Done
         public Task<Customer> UpdateCustomer(Customer customer);
-        public Task<Customer> CompareOldNewCustomer(UpdateCustomer updtcustomer); //Done
+        public Task<Customer> CompareOldNewCustomer(CustomerUpdate updtcustomer); //Done
     }
 }

@@ -10,9 +10,9 @@ namespace ClientCRUD.Infra.Services
 {
     public class CustomerToNoDetails
     {
-        public static NoDetailsCustomer Convert(Customer list)
+        public static CustomerNoDetails Convert(Customer list)
         {
-            return new NoDetailsCustomer()
+            return new CustomerNoDetails()
             {
                 Code = list.Code,
                 Type = list.Type,
