@@ -19,7 +19,19 @@ builder.Services.AddScoped<MongoDbContext<Customer>>();
 builder.Services.AddScoped<CustomerRepository>();
 builder.Services.AddScoped<CustomerServices>();
 
+builder.Services.AddCors(
+        x => x.AddPolicy("MyPolitic", 
+        policy => policy
+        .WithOrigins(["http://localhost:4200", "http://localhost:5011", "https://localhost:7036"])
+        //.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials()
+        ));
 
 var app = builder.Build();
+
+app.UseCors("MyPolitic");
+
 app.MapControllers();
 app.Run();  
