@@ -2,11 +2,6 @@
 using ClientCRUD.Domain.Services;
 using ClientCRUD.Infra.Repositories;
 using ClientCRUD.Shared.Parameters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClientCRUD.Infra.Services
 {
