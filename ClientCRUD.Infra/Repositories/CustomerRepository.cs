@@ -1,18 +1,9 @@
 ﻿using ClientCRUD.Domain.Entities;
 using ClientCRUD.Domain.Repositories;
 using ClientCRUD.Infra.Context;
-using ClientCRUD.Shared.ComplexTypes;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+
 
 namespace ClientCRUD.Infra.Repositories;
 
