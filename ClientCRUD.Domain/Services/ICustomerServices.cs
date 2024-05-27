@@ -11,6 +11,7 @@ namespace ClientCRUD.Domain.Services
     public interface ICustomerServices
     {
         public Task<List<Customer>> GetCustomers(); //Done
+        public Task<List<Customer>> GetCustomersWithLimitAndSkip(int limit = 5, int skip = 0);
         public Task<Customer> GetCustomerById(string id); //Done
         public Task<bool> DeleteCustomerById(string id); //Done
         public Task<Customer> InsertCustomer(Customer customer); //Done

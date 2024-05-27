@@ -27,6 +27,15 @@ namespace ClientCRUD.Api.Controllers
                 return StatusCode(403);
             return Ok(await _customerServices.GetCustomers());
         }
+        [HttpPost("query")]
+        public async Task<IActionResult> GetAllWithLimitAndSkip([FromBody] CustomerLimitAndSkip options)
+        {
+            int[] permissions = [1, 2];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
+            return Ok(await _customerServices.GetCustomersWithLimitAndSkip(options.limit, options.skip));
+        }
+
         [HttpGet("less")]
         public async Task<IActionResult> GetAllWithoutDetails() //Done
         {

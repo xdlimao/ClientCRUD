@@ -3,6 +3,7 @@ using ClientCRUD.Domain.Repositories;
 using ClientCRUD.Infra.Context;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 
 namespace ClientCRUD.Infra.Repositories;
@@ -27,6 +28,18 @@ public class CustomerRepository : ICustomerRepository
         var collection = _db.GetCollection<Customer>("customers");
         var filter = new BsonDocument();
         var result = await collection.FindAsync(filter);
+        return await result.ToListAsync();
+    }
+    public async Task<List<Customer>> GetAllWithLimitAndSkip(int limit, int skip)
+    {
+        var collection = _db.GetCollection<Customer>("customers");
+        var filter = new BsonDocument();
+        var options = new FindOptions<Customer>
+        {
+            Limit = limit,
+            Skip = skip
+        };
+        var result = await collection.FindAsync(filter, options);
         return await result.ToListAsync();
     }
 

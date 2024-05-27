@@ -16,6 +16,11 @@ namespace ClientCRUD.Infra.Services
         {
             return await _customerRepository.GetAll();
         }
+        public async Task<List<Customer>> GetCustomersWithLimitAndSkip(int limit = 5, int skip = 0)
+        {
+            return await _customerRepository.GetAllWithLimitAndSkip(limit, skip);
+
+        }
         public async Task<Customer> GetCustomerById(string id) //Done
         {
             return await _customerRepository.GetById(id);
