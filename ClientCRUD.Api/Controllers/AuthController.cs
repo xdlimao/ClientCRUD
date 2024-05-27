@@ -19,6 +19,7 @@ namespace ClientCRUD.Api.Controllers
 
         [HttpPost("")]
         public async Task<IActionResult> Auth(
+            //body
             )
         {
             var entity = await _userService.SingInUser("kaiky", "pastel");
