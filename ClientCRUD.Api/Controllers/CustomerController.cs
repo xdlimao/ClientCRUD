@@ -1,26 +1,38 @@
-﻿using ClientCRUD.Domain.Entities;
-using ClientCRUD.Domain.Services;
+﻿using ClientCRUD.Domain.Services;
 using ClientCRUD.Infra.Services;
 using ClientCRUD.Shared.Parameters;
 using ClientCRUD.Shared.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientCRUD.Api.Controllers
 {
     [ApiController]
     [Route("customer")]
+    [Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerServices _customerServices;
-        public CustomerController(CustomerServices customerServices)
+        private readonly IUserServices _userServices;
+        public CustomerController(CustomerServices customerServices, UserServices userServices)
         {
             _customerServices = customerServices;
+            _userServices = userServices;
         }
         [HttpGet("")]
-        public async Task<IActionResult> GetAll() => Ok(await _customerServices.GetCustomers()); //Done
+        public async Task<IActionResult> GetAll() //Done
+        {
+            int[] permissions = [1, 2];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
+            return Ok(await _customerServices.GetCustomers());
+        }
         [HttpGet("less")]
         public async Task<IActionResult> GetAllWithoutDetails() //Done
         {
+            int[] permissions = [1, 2];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
             var result = await _customerServices.GetCustomers();
             List<CustomerNoDetails> customers = new List<CustomerNoDetails>();
             for(int i = 0; i < result.Count(); i++)
@@ -32,6 +44,9 @@ namespace ClientCRUD.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByCode([FromRoute] string id) //Done
         {
+            int[] permissions = [1, 2];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
             var customer = await _customerServices.GetCustomerById(id);
             if (customer == null)
                 return NotFound($"Not found the id: {id}");
@@ -40,6 +55,9 @@ namespace ClientCRUD.Api.Controllers
         [HttpGet("{id}/less")]
         public async Task<IActionResult> GetByCodeWithoutDetails([FromRoute] string id) //Done
         {
+            int[] permissions = [1, 2];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
             var result = await _customerServices.GetCustomerById(id);
             if (result == null)
                 return NotFound($"Not found the id: {id}");
@@ -48,26 +66,38 @@ namespace ClientCRUD.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteByCode([FromRoute] string id) //Done
         {
+            int[] permissions = [1];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
             var result = await _customerServices.DeleteCustomerById(id);
             if (!result) 
                 return NotFound($"Not found the id: {id}");
             return Ok($"{id} deleted with success");
         }
         [HttpPost("")]
-        public async Task<IActionResult> InsertAllValues([FromBody] CustomerCreate newcustomer) //Done
+        public async Task<IActionResult> InsertAllValues([FromBody] CustomerCreate newcustomer)
         {
+            int[] permissions = [1];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
             var result = await _customerServices.InsertCustomer(CustomerCreateToCustomer.Convert(newcustomer));
             return Ok(result);
         }
         [HttpPost("less")]
-        public async Task<IActionResult> InsertMandatoryValues([FromBody] CustomerCreateMinimum newcustomer) //Done
+        public async Task<IActionResult> InsertMandatoryValues([FromBody] CustomerCreateMinimum newcustomer)
         {
+            int[] permissions = [1];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
             var result = await _customerServices.InsertCustomer(CustomerCreateMinimunToCustomer.Convert(newcustomer));
             return Ok(result);
         }
         [HttpPut("")]
         public async Task<IActionResult> Update([FromBody] CustomerUpdate updtcustomer)
         {
+            int[] permissions = [1];
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(HttpContext.User.Claims.First(c => c.Type == "_id").Value), permissions))
+                return StatusCode(403);
             var customer = await _customerServices.CompareOldNewCustomer(updtcustomer);
             if (customer == null)
                 return NotFound($"Not found the id: {updtcustomer.Id}");

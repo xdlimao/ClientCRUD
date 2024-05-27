@@ -10,5 +10,6 @@ namespace ClientCRUD.Domain.Services
     public interface IUserServices
     {
         public Task<User> SingInUser(string login, string password);
+        public Task<bool> VerifyUserAccess(Guid id, int[] type);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ClientCRUD.Domain.Entities;
 using ClientCRUD.Domain.Services;
 using ClientCRUD.Infra.Services;
+using ClientCRUD.Shared.Parameters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientCRUD.Api.Controllers
@@ -19,10 +20,10 @@ namespace ClientCRUD.Api.Controllers
 
         [HttpPost("")]
         public async Task<IActionResult> Auth(
-            //body
+            [FromBody] UserSignIn user
             )
         {
-            var entity = await _userService.SingInUser("kaiky", "pastel");
+            var entity = await _userService.SingInUser(user.login, user.password);
             if (entity != null)
                 return Ok(_tokenService.Create(entity));
             return Unauthorized("Login or password wrong stupid");

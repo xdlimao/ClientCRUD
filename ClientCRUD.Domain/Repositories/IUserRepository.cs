@@ -9,6 +9,7 @@ namespace ClientCRUD.Domain.Repositories
 {
     public interface IUserRepository
     {
+        public Task<User> GetById (Guid id);
         public Task<User> GetByLogin(string login);
     }
 }

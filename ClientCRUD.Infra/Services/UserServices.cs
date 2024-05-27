@@ -11,6 +11,20 @@ namespace ClientCRUD.Infra.Services
         {
             _userRepository = userRepository;
         }
+
+        public async Task<bool> VerifyUserAccess(Guid id, int[] type)
+        {
+            //True: Permitir
+            //False: Não permitir
+            var entity = await _userRepository.GetById(id);
+            if (entity == null)
+                return false;
+            for (int i = 0; i < type.Length; i++)
+                if (entity.Type.Code == type[i])
+                    return true;
+            return false;
+        }
+
         public async Task<User> SingInUser(string login, string password)
         {
             var entity = await _userRepository.GetByLogin(login);

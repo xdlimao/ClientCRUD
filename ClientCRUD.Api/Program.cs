@@ -62,8 +62,6 @@ app.UseAuthorization();
 
 app.UseCors("MyPolitic");
 
-app.MapGet("/oi", () => "admin").RequireAuthorization();
-
 app.MapControllers();
 
 app.Run();  
