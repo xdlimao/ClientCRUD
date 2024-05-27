@@ -22,10 +22,10 @@ namespace ClientCRUD.Api.Controllers
             _userServices = userServices;
         }
         [HttpGet("")]
-        public async Task<IActionResult> GetAll(ClaimsPrincipal user) //Tomar como exemplo Done
+        public async Task<IActionResult> GetAll(ClaimsPrincipal user) //Tomar como exemplo Done, Primeiro merge pra auth e auto e depois main
         {
             int[] permissions = [1,2];
-            if (await _userServices.VerifyUserAccess(Guid.Parse(user.Claims.First(c => c.Type == "id").ToString()), permissions))
+            if (!await _userServices.VerifyUserAccess(Guid.Parse(user.Claims.First(c => c.Type == "id").ToString()), permissions))
                 return StatusCode(403);
             return Ok(await _customerServices.GetCustomers());
         }

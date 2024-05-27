@@ -14,6 +14,8 @@ namespace ClientCRUD.Infra.Services
 
         public async Task<bool> VerifyUserAccess(Guid id, int[] type)
         {
+            //True: Permitir
+            //False: Não permitir
             var entity = await _userRepository.GetById(id);
             if (entity == null)
                 return false;
