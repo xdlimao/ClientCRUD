@@ -3,23 +3,34 @@ using ClientCRUD.Domain.Services;
 using ClientCRUD.Infra.Services;
 using ClientCRUD.Shared.Parameters;
 using ClientCRUD.Shared.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ClientCRUD.Api.Controllers
 {
     [ApiController]
     [Route("customer")]
+    [Authorize]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerServices _customerServices;
-        public CustomerController(CustomerServices customerServices)
+        private readonly IUserServices _userServices;
+        public CustomerController(CustomerServices customerServices, UserServices userServices)
         {
             _customerServices = customerServices;
+            _userServices = userServices;
         }
         [HttpGet("")]
-        public async Task<IActionResult> GetAll() => Ok(await _customerServices.GetCustomers()); //Done
+        public async Task<IActionResult> GetAll(ClaimsPrincipal user) //Tomar como exemplo Done
+        {
+            int[] permissions = [1,2];
+            if (await _userServices.VerifyUserAccess(Guid.Parse(user.Claims.First(c => c.Type == "id").ToString()), permissions))
+                return StatusCode(403);
+            return Ok(await _customerServices.GetCustomers());
+        }
         [HttpGet("less")]
-        public async Task<IActionResult> GetAllWithoutDetails() //Done
+        public async Task<IActionResult> GetAllWithoutDetails()
         {
             var result = await _customerServices.GetCustomers();
             List<CustomerNoDetails> customers = new List<CustomerNoDetails>();
@@ -30,7 +41,7 @@ namespace ClientCRUD.Api.Controllers
             return Ok(customers);
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByCode([FromRoute] string id) //Done
+        public async Task<IActionResult> GetByCode([FromRoute] string id)
         {
             var customer = await _customerServices.GetCustomerById(id);
             if (customer == null)
@@ -38,7 +49,7 @@ namespace ClientCRUD.Api.Controllers
             return Ok(customer);
         }
         [HttpGet("{id}/less")]
-        public async Task<IActionResult> GetByCodeWithoutDetails([FromRoute] string id) //Done
+        public async Task<IActionResult> GetByCodeWithoutDetails([FromRoute] string id)
         {
             var result = await _customerServices.GetCustomerById(id);
             if (result == null)
@@ -46,7 +57,7 @@ namespace ClientCRUD.Api.Controllers
             return Ok(CustomerToNoDetails.Convert(result));
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteByCode([FromRoute] string id) //Done
+        public async Task<IActionResult> DeleteByCode([FromRoute] string id)
         {
             var result = await _customerServices.DeleteCustomerById(id);
             if (!result) 
@@ -54,13 +65,13 @@ namespace ClientCRUD.Api.Controllers
             return Ok($"{id} deleted with success");
         }
         [HttpPost("")]
-        public async Task<IActionResult> InsertAllValues([FromBody] CustomerCreate newcustomer) //Done
+        public async Task<IActionResult> InsertAllValues([FromBody] CustomerCreate newcustomer)
         {
             var result = await _customerServices.InsertCustomer(CustomerCreateToCustomer.Convert(newcustomer));
             return Ok(result);
         }
         [HttpPost("less")]
-        public async Task<IActionResult> InsertMandatoryValues([FromBody] CustomerCreateMinimum newcustomer) //Done
+        public async Task<IActionResult> InsertMandatoryValues([FromBody] CustomerCreateMinimum newcustomer)
         {
             var result = await _customerServices.InsertCustomer(CustomerCreateMinimunToCustomer.Convert(newcustomer));
             return Ok(result);
