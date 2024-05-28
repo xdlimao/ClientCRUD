@@ -20,7 +20,7 @@ namespace ClientCRUD.Infra.Services
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 SigningCredentials = credentials,
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddHours(4),
                 Subject = GenerateClaims(user),
             };
             var token = handler.CreateToken(tokenDescriptor);
