@@ -19,6 +19,7 @@ namespace ClientCRUD.Infra.Mappings
                 classMap.MapMember(c => c.Street).SetElementName("street");
                 classMap.MapMember(c => c.Number).SetElementName("number");
                 classMap.MapMember(c => c.Complement).SetElementName("complement");
+                classMap.MapMember(c => c.Neighborhood).SetElementName("neighborhood");
                 classMap.MapMember(c => c.City).SetElementName("city");
                 classMap.MapMember(c => c.State).SetElementName("state");
                 classMap.MapMember(c => c.Country).SetElementName("country");
