@@ -65,7 +65,7 @@ public class CustomerRepository : ICustomerRepository
             .Set("Code", customer.Code)
             .Set("Type", customer.Type)
             .Set("Name", customer.Name)
-            .Set("Nickname", customer.Name)
+            .Set("Nickname", customer.Nickname)
             .Set("Description", customer.Description)
             .Set("PersonType", customer.PersonType)
             .Set("IdentityType", customer.IdentityType)
